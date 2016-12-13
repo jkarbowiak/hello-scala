@@ -6,6 +6,10 @@ package com.aksoft.scala.hello
 object HelloWorld {
 
   def main(args: Array[String]): Unit = {
-    printf("Hello World")
+    println("Hello World\n")
+    println(Functions.factorial(5))
+    println()
+    println(Functions.powerOfTwo(5))
+    println(Functions.powerOfTwo2(5))
   }
 }
