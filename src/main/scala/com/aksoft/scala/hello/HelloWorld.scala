@@ -9,7 +9,7 @@ object HelloWorld {
     println("Hello World\n")
     println(Functions.factorial(5))
     println()
+    println(Functions.powerOfTwoNotTail(5))
     println(Functions.powerOfTwo(5))
-    println(Functions.powerOfTwo2(5))
   }
 }
