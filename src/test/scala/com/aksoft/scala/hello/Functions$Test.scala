@@ -43,5 +43,34 @@ class Functions$Test extends FunSpec {
     }
   }
 
+  describe("sumPowersOf2") {
+    it("should return 0 for (0, 0) power of 2") {
+      assert(Functions.sumPowersOf2(0, 0) == 1)
+    }
+
+    it("should return 3 for (0, 1) power of 2") {
+      assert(Functions.sumPowersOf2(0, 1) == 3)
+    }
+
+    it("should return 14 for (1, 3) power of 2") {
+      assert(Functions.sumPowersOf2(1, 3) == 14)
+    }
+  }
+
+  describe("curried sum") {
+    it ("should work for x ^ 3 and (0, 3)") {
+      assert(Functions.curriedSum(x => x * x * x)(0, 3) == 36)
+    }
+  }
+
+  describe("curried tail sum") {
+    it ("should return 36 for x ^ 3 and (0, 3)") {
+      assert(Functions.curriedTailSum(x => x * x * x)(0, 3) == 36)
+    }
+
+    it ("should return  x ^ 3 and (0, 3)") {
+      assert(Functions.curriedTailSum(x => 3 * x)(0, 3) == 18)
+    }
+  }
 
 }
