@@ -36,21 +36,44 @@ object Functions {
   }
 
   def sumReturningFunction(f: Int => Int): (Int, Int) => Int = {
-    def sumUsingPredifinedFunction(a: Int, b: Int) : Int = {
-      if (a > b) 0 else f(a) + sumUsingPredifinedFunction(a + 1, b)
+    def sumUsingPredefinedFunction(a: Int, b: Int): Int = {
+      if (a > b) 0 else f(a) + sumUsingPredefinedFunction(a + 1, b)
     }
-    sumUsingPredifinedFunction
+
+    sumUsingPredefinedFunction
   }
 
-  def curriedSum(f: Int => Int)(a: Int, b:Int) : Int = {
-    if (a > b) 0 else f (a) + curriedSum(f)(a + 1, b)
+  def curriedSum(f: Int => Int)(a: Int, b: Int): Int = {
+    if (a > b) 0 else f(a) + curriedSum(f)(a + 1, b)
   }
 
-  def curriedTailSum(f: Int => Int)(a: Int, b:Int) : Int = {
-    def iter(a: Int, result: Int) : Int = {
+  def curriedTailSum(f: Int => Int)(a: Int, b: Int): Int = {
+    def iter(a: Int, result: Int): Int = {
       if (a > b) result
       else iter(a + 1, result + f(a))
     }
+
     iter(a, 0)
+  }
+
+  def curriedProduct(f: Int => Int)(a: Int, b: Int): Int = {
+    if (a > b) 1 else f(a) * curriedProduct(f)(a + 1, b)
+  }
+
+  def curriedTailProduct(f: Int => Int)(a: Int, b: Int): Int = {
+    def iter(a: Int, result: Int): Int = {
+      if (a > b) result
+      else iter(a + 1, result * f(a))
+    }
+
+    iter(a, 1)
+  }
+
+  def curriedTailAggregation(aggregate: (Int, Int) => Int, v: Int)(f: Int => Int)(a: Int, b: Int): Int = {
+    def iter(a: Int, result: Int) : Int = {
+      if (a > b) result
+      else iter(a + 1, aggregate(result, f(a)))
+    }
+    iter(a, v)
   }
 }

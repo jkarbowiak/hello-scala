@@ -73,4 +73,25 @@ class Functions$Test extends FunSpec {
     }
   }
 
+  describe("curried product") {
+    it ("should return for x + 2 and (0, 3)") {
+      assert(Functions.curriedProduct(x => x + 2)(0,3) == 120)
+    }
+  }
+
+  describe("curried tail product") {
+    it ("should return for x + 2 and (0, 3)") {
+      assert(Functions.curriedTailProduct(x => x + 2)(0,3) == 120)
+    }
+  }
+
+  describe("curried tail aggregation") {
+    it ("should return for x*y, 1,  x + 2 and (0, 3)") {
+      assert(Functions.curriedTailAggregation((x, y)  => x * y, 1)(x => x + 2)(0,3) == 120)
+    }
+
+    it ("should return for x + y, 0, x ^ 3 and (0, 3)") {
+      assert(Functions.curriedTailAggregation((x, y) => x + y, 0)(x => 3 * x)(0, 3) == 18)
+    }
+  }
 }
